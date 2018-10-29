@@ -1,0 +1,18 @@
+server:
+  port: 9898
+
+spring:
+  application:
+    name: hxjk-config
+  profiles:
+    active: dev
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/tiantyi/SpringCloudConfig.git
+#          username: qinhaohao
+#          password: qhh921114
+          default-label: ${spring.profiles.active}
+          search-paths: 'src/main/resources/{application}'
+          force-pull: true

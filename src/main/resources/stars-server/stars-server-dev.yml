@@ -1,0 +1,96 @@
+eureka:
+  instance:
+    lease-expiration-duration-in-seconds: 9
+    #服务刷新时间配置，每隔这个时间会主动心跳一次
+    #默认30s
+    lease-renewal-interval-in-seconds: 5
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipaddress}:${server.port}
+  client:
+    serviceUrl:
+      defaultZone: http://192.168.40.63:8888/eureka/
+    register-with-eureka: false
+    fetch-registry: false
+spring:
+  datasource:
+    master:
+      name: starsgroupchina
+      jdbc-url: jdbc:mysql://192.168.40.64:3306/hxjk_stars?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&serverTimezone=UTC
+      username: root
+      password: root
+      driver-class-name: com.mysql.jdbc.Driver
+    slave:
+      name: starsgroupchina
+      jdbc-url: jdbc:mysql://192.168.40.64:3306/hxjk_stars?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&serverTimezone=UTC
+      username: root
+      password: root
+      driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      filters: config,slf4j,stat
+      maxActive: 30
+      initialSize: 2
+      maxWait: 60000
+      minIdle: 2
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: select 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
+      connectionInitSqls: set names utf8mb4;
+  kafka:
+    bootstrap-servers: 192.168.40.65:9092
+  redis:
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 4
+    database: 0
+    sentinel:
+      master: mymaster
+      nodes: 192.168.40.64:26380,192.168.40.64:26381,192.168.40.64:26382
+    password: redis123456
+
+datasource:
+  use: 'master'
+
+file:
+  server: http://180.167.110.236:8088/file
+
+sms:
+  test.mode: false
+
+external:
+  old-stars:
+    url: http://192.168.40.4:8112
+    password: newstarswealth
+  crm:
+    url: http://192.168.100.2
+    memberBinding:
+      password: starswealth
+    sms:
+      password: starswealth
+
+express:
+  kdniao:
+    businessId: test1363354
+    key: cd76f77d-363f-4045-9b5c-bb3ebf2a2eb7
+    url: http://sandboxapi.kdniao.cc:8080/kdniaosandbox/gateway/exterfaceInvoke.json
+  ipTaobao:
+    url: http://ip.taobao.com/service/getIpInfo.php
+
+old-stars-service:
+  ribbon:
+    ReadTimeout: 60000
+    ConnectTimeout: 60000
+
+#数据加解密
+encrypt:
+  secretKey: 'stars'
+  model:
+    com.starsgroupchina.stars.server.bean.model.Member: 'idCardNo,phoneNumber'
+    com.starsgroupchina.stars.server.bean.model.OrderListView: 'phoneNumber'
