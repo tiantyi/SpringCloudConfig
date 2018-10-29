@@ -13,18 +13,11 @@ eureka:
     fetch-registry: false
 spring:
   datasource:
-    master:
-      name: starsgroupchina
-      jdbc-url: jdbc:mysql://192.168.40.64:3306/hxjk_stars?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&serverTimezone=UTC
-      username: root
-      password: root
-      driver-class-name: com.mysql.jdbc.Driver
-    slave:
-      name: starsgroupchina
-      jdbc-url: jdbc:mysql://192.168.40.64:3306/hxjk_stars?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&serverTimezone=UTC
-      username: root
-      password: root
-      driver-class-name: com.mysql.jdbc.Driver
+    name: starsgroupchina
+    url: jdbc:mysql://192.168.40.64:3306/hxjk_stars?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       filters: config,slf4j,stat
