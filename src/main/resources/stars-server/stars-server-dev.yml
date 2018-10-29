@@ -59,7 +59,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: dev
+        include: refresh,health,info
 
 datasource:
   use: 'slave'
