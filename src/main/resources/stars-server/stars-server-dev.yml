@@ -55,8 +55,14 @@ spring:
       nodes: 192.168.40.64:26380,192.168.40.64:26381,192.168.40.64:26382
     password: redis123456
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: *
+
 datasource:
-  use: 'master'
+  use: 'slave'
 
 file:
   server: http://180.167.110.236:8088/file
