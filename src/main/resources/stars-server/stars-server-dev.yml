@@ -55,7 +55,7 @@ management:
         include: refresh,health,info
 
 datasource:
-  use: 'master'
+  use: 'slave'
 
 file:
   server: http://180.167.110.236:8088/file
