@@ -16,3 +16,5 @@ spring:
           default-label: ${spring.profiles.active}
           search-paths: 'src/main/resources/{application}'
           force-pull: true
+  kafka:
+    bootstrap-servers: 192.168.40.65:9092
